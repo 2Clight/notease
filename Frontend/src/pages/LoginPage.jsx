@@ -3,6 +3,10 @@ import { useAuth } from '../context/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
 
+const BACKEND_URL = "https://notease-1.onrender.com";
+
+
+
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +21,7 @@ const LoginPage = () => {
   setError('');
   setSuccess('');
   try {
-    const res = await fetch('http://localhost:5000/api/auth/login', {
+   const res = await fetch(`${BACKEND_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',

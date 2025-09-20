@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+
+const BACKEND_URL = "https://notease-1.onrender.com";
+
 const AdminPage = () => {
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState("member");
@@ -18,7 +21,7 @@ const AdminPage = () => {
       return;
     }
     try {
-      const res = await fetch(`http://localhost:5000/api/tenants/${tenantSlug}/upgrade`, {
+      const res = await  fetch(`${BACKEND_URL}/api/tenants/${tenantSlug}/upgrade`, {
         method: "POST",
         credentials: "include",
       });
@@ -43,7 +46,7 @@ const AdminPage = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:5000/api/auth/invite", {
+      const res = await fetch(`${BACKEND_URL}/api/auth/invite`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 
+const BACKEND_URL = "https://notease-1.onrender.com";
+
+
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState('');
@@ -9,7 +12,7 @@ const Notes = () => {
   const [showLimitModal, setShowLimitModal] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/notes', { credentials: 'include' })
+   fetch(`${BACKEND_URL}/api/notes`, { credentials: 'include' })
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
@@ -28,7 +31,7 @@ const Notes = () => {
 
   const addNote = () => {
     if (title.trim() || content.trim()) {
-      fetch('http://localhost:5000/api/notes', {
+       fetch(`${BACKEND_URL}/api/notes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -53,7 +56,7 @@ const Notes = () => {
     }
   };
   const deleteNote = (id) => {
-    fetch(`http://localhost:5000/api/notes/${id}`, {
+    fetch(`${BACKEND_URL}/api/notes/${id}`, {
       method: 'DELETE',
       credentials: 'include',
     })
