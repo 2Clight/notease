@@ -15,8 +15,11 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: 'http://localhost:5173', // your frontend URL
-  credentials: true
+      origin: [
+        'http://localhost:5173',
+        'https://notease-7ou9.vercel.app' // your frontend URL
+      ],
+      credentials: true
 }));
 app.use(bodyParser.json());
 
