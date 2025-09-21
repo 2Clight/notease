@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-import authRoutes from './routes/auth.route.js'; 
+import authRoutes from './routes/auth.route.js';
 import { connectDB } from './lib/db.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -15,9 +15,10 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-      origin: 'https://notease-7ou9.vercel.app',
-        
-      credentials: true
+    origin: 'https://notease-7ou9.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(bodyParser.json());
 

@@ -24,13 +24,13 @@ console.log("Refresh token:", refreshToken);
 
     res.cookie('access_token', accessToken, {
         httpOnly: true, //prevent xss attacks
-        secure: true, //send cookie over https only in production
+        secure: true, 
         sameSite: 'lax', //prevent CSRF attacks, cross-site request forgery'
         maxAge: 35 * 60 * 1000,
     });
     res.cookie('refresh_token', refreshToken, {
         httpOnly: true, //prevent xss attacks
-        secure: true, //send cookie over https only in production
+        secure: true, 
         sameSite: 'strict', //prevent CSRF attacks, cross-site request forgery'
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds,
     });
