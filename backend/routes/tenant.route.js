@@ -1,11 +1,11 @@
 import express from 'express';
 import Tenant from '../models/tenant.model.js';
-import { protectRoute, adminRoute } from '../middleware/auth.middleware.js';
+import { protectRoute } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
 // POST /api/tenants/:slug/upgrade (admin only)
-router.post('/:slug/upgrade', protectRoute, adminRoute, async (req, res) => {
+router.post('/:slug/upgrade', protectRoute, async (req, res) => {
   try {
     const tenant = await Tenant.findOne({ slug: req.params.slug });
     if (!tenant) return res.status(404).json({ message: 'Tenant not found' });
