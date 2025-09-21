@@ -25,13 +25,13 @@ console.log("Refresh token:", refreshToken);
     res.cookie('access_token', accessToken, {
         httpOnly: true, //prevent xss attacks
         secure: process.env.NODE_ENV === 'production', //send cookie over https only in production
-        sameSite: 'none', //prevent CSRF attacks, cross-site request forgery'
+        sameSite: 'lax', //prevent CSRF attacks, cross-site request forgery'
         maxAge: 35 * 60 * 1000,
     });
     res.cookie('refresh_token', refreshToken, {
         httpOnly: true, //prevent xss attacks
         secure: process.env.NODE_ENV === 'production', //send cookie over https only in production
-        sameSite: 'none', //prevent CSRF attacks, cross-site request forgery'
+        sameSite: 'strict', //prevent CSRF attacks, cross-site request forgery'
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds,
     });
 }
@@ -84,8 +84,7 @@ console.log("Password match?", isMatch);
                     id: user._id,
                     email: user.email,
                     name: user.name,
-                    role: user.role,
-                    tenant: user.tenant,
+                    role: user.role
                 }, message: "Login successful"
             });
         } else {
@@ -133,7 +132,7 @@ export const refreshAccessToken = async (req, res) => {
         res.cookie('access_token', accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'none',
+            sameSite: 'lax',
             maxAge: 35 * 60 * 1000 // 35 minutes
         });
         res.status(200).json({ accessToken, message: "Tokens refreshed successfully" });
