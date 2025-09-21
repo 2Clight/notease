@@ -10,7 +10,6 @@ const BACKEND_URL = "https://notease-1.onrender.com";
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [tenant, setTenant] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const LoginPage = () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({ email, password, tenant })
+      body: JSON.stringify({ email, password})
     });
     const data = await res.json();
     if (!res.ok) {
